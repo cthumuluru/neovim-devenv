@@ -1,4 +1,4 @@
-local function config()
+local function setup()
   local cmp_status_ok, cmp = pcall(require, "cmp")
   if not cmp_status_ok then
     return
@@ -8,7 +8,7 @@ local function config()
   if not snip_status_ok then
     return
   end
-  require("luasnip/loaders/from_vscode").lazy_load()
+  -- require("luasnip/loaders/from_vscode").lazy_load()
 
   local check_backspace = function()
     local col = vim.fn.col "." - 1
@@ -112,7 +112,7 @@ local function config()
       end,
     },
     sources = {
-      -- { name = "nvim_lsp" },
+      { name = "nvim_lsp" },
       { name = "nvim_lua" },
       { name = "luasnip" },
       { name = "buffer" },
@@ -130,17 +130,6 @@ local function config()
       native_menu = false,
     },
   }
-
-  -- nvim-autopairs integration
-  -- If you want insert `(` after select function or method item
-  local autopairs_status_ok, cmp_autopairs = require('nvim-autopairs.completion.cmp')
-  if not autopairs_status_ok then
-    cmp.event:on(
-      'confirm_done',
-      cmp_autopairs.on_confirm_done()
-    )
-  end
-
 end
 
 return {
@@ -152,7 +141,15 @@ return {
     "saadparwaiz1/cmp_luasnip", -- snippet completions
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    "nvim-autopairs",
+    {
+      "L3MON4D3/LuaSnip",
+      version = "v2.*", -- latest major release
+      build = "make install_jsregexp",
+      dependencies = { "rafamadriz/friendly-snippets" },
+      config = function()
+        require("luasnip.loaders.from_vscode").lazy_load()
+      end,
+    }
   },
-  config = config,
+  config = setup,
 }
