@@ -9,7 +9,7 @@ local function setup()
     sync_install = false,
     highlight = {
       enable = true,    -- false will disable the whole extension
-      disable = { "" }, -- disabled list of languages
+      disable = { "css", "vimdoc" }, -- disabled list of languages
       additional_vim_regex_highlighting = true,
     },
     indent = {
@@ -17,6 +17,11 @@ local function setup()
       disable = { "yaml" },
     },
   })
+
+  context_commentstring = {
+    enable = true,
+    enable_autocmd = false,
+  }
 
   -- rainbow parantesis
   rainbow = {
@@ -28,6 +33,7 @@ end
 
 return {
   "nvim-treesitter/nvim-treesitter",
+  version = "v0.9.2",
   build  = ":TSUpdate",
   dependencies = {
     -- Optional dependencies
