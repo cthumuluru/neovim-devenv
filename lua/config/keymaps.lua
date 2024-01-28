@@ -77,14 +77,15 @@ keymap("x", "<A-j>", ":m '>+1<CR>gv=gv", opts)
 keymap("x", "<A-k>", ":m '<-2<CR>gv=gv", opts)
 
 -- Luasnip
-vim.keymap.set({"i"}, "<C-K>", function() ls.expand() end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-L>", function() ls.jump( 1) end, {silent = true})
-vim.keymap.set({"i", "s"}, "<C-J>", function() ls.jump(-1) end, {silent = true})
+vim.keymap.set({"i"}, "<C-K>", function() require('luasnip').expand() end, opts)
+vim.keymap.set({"i", "s"}, "<C-L>", function() require('luasnip').jump(1) end, opts)
+vim.keymap.set({"i", "s"}, "<C-J>", function() require('luasnip').jump(-1) end, opts)
 vim.keymap.set({"i", "s"}, "<C-E>", function()
+  local ls = require('luasnip')
   if ls.choice_active() then
     ls.change_choice(1)
   end
-end, {silent = true})
+end, opts)
 
 -- Barbar --
 -- Move to previous/next
@@ -108,3 +109,7 @@ keymap('n', '<A-0>', '<Cmd>BufferLast<CR>', opts)
 keymap('n', '<A-p>', '<Cmd>BufferPin<CR>', opts)
 -- Close buffer
 keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
+
+-- Code folds
+vim.keymap.set('n', 'zR', function() require('ufo').openAllFolds() end, opts)
+vim.keymap.set('n', 'zM', function() require('ufo').closeAllFolds() end, opts)
