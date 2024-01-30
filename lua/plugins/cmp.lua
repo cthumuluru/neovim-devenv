@@ -8,42 +8,11 @@ local function setup()
   if not snip_status_ok then
     return
   end
-  require("luasnip.loaders.from_vscode").lazy_load()
 
   local check_backspace = function()
     local col = vim.fn.col "." - 1
     return col == 0 or vim.fn.getline("."):sub(col, col):match "%s"
   end
-
-  --   פּ ﯟ   some other good icons
-  local kind_icons = {
-    Text = "󰊄",
-    Method = "m",
-    Function = "󰊕",
-    Constructor = "",
-    Field = "",
-    Variable = "󰫧",
-    Class = "",
-    Interface = "",
-    Module = "",
-    Property = "",
-    Unit = "",
-    Value = "",
-    Enum = "",
-    Keyword = "󰌆",
-    Snippet = "",
-    Color = "",
-    File = "",
-    Reference = "",
-    Folder = "",
-    EnumMember = "",
-    Constant = "",
-    Struct = "",
-    Event = "",
-    Operator = "",
-    TypeParameter = "󰉺",
-  }
-  -- find more here: https://www.nerdfonts.com/cheat-sheet
 
   cmp.setup {
     snippet = {
@@ -96,20 +65,19 @@ local function setup()
       }),
     },
     formatting = {
-      fields = { "kind", "abbr", "menu" },
-      format = function(entry, vim_item)
-        -- Kind icons
-        vim_item.kind = string.format("%s", kind_icons[vim_item.kind])
-        -- vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
-        vim_item.menu = ({
-          nvim_lsp = "[LSP]",
-          nvim_lua = "[Lua]",
-          luasnip = "[Snippet]",
+      format = require("lspkind").cmp_format({
+        mode = "symbol_text",
+        menu = ({
           buffer = "[Buffer]",
+          nvim_lsp = "[LSP]",
+          luasnip = "[LuaSnip]",
+          nvim_lua = "[Lua]",
           path = "[Path]",
-        })[entry.source.name]
-        return vim_item
-      end,
+        }),
+        -- before = function(entry, vim_item)
+        --   vim_item.abbr = entry.path
+        -- end,
+      }),
     },
     sources = {
       { name = "nvim_lsp" },
@@ -123,6 +91,7 @@ local function setup()
       select = false,
     },
     window = {
+      completion = cmp.config.window.bordered(),
       documentation = cmp.config.window.bordered(),
     },
     experimental = {
@@ -141,15 +110,8 @@ return {
     "saadparwaiz1/cmp_luasnip", -- snippet completions
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
-    {
-      "L3MON4D3/LuaSnip",
-      version = "v2.*", -- latest major release
-      build = "make install_jsregexp",
-      dependencies = { "rafamadriz/friendly-snippets" },
-      config = function()
-        require("luasnip.loaders.from_vscode").lazy_load()
-      end,
-    }
+    "L3MON4D3/LuaSnip",
+    "onsails/lspkind.nvim",
   },
   config = setup,
 }

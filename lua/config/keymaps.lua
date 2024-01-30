@@ -113,3 +113,6 @@ keymap('n', '<A-c>', '<Cmd>BufferClose<CR>', opts)
 -- Code folds
 vim.keymap.set('n', 'zR', function() require('ufo').openAllFolds() end, opts)
 vim.keymap.set('n', 'zM', function() require('ufo').closeAllFolds() end, opts)
+
+-- Toggleterm --
+keymap('n', '<C-\\>', '<Cmd>:ToggleTerm size=40 direction=float<CR>', opts)
