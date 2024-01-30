@@ -67,6 +67,7 @@ return {
   dependencies = {
     "williamboman/mason.nvim",
     "neovim/nvim-lspconfig",
+    "RRethy/vim-illuminate",
 
     "mfussenegger/nvim-jdtls", -- java language server
   },
