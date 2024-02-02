@@ -3,6 +3,7 @@ local servers = {
   "lua_ls",
   "jdtls",
   "clangd",
+  "rust_analyzer",
 }
 
 local function setup()
