@@ -4,6 +4,7 @@ local servers = {
   "jdtls",
   "clangd",
   "rust_analyzer",
+  "gopls",
 }
 
 local function setup()
