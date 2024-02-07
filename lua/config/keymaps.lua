@@ -116,3 +116,6 @@ vim.keymap.set('n', 'zM', function() require('ufo').closeAllFolds() end, opts)
 
 -- Toggleterm --
 keymap('n', '<C-\\>', '<Cmd>:ToggleTerm size=40 direction=float<CR>', opts)
+
+-- Outline
+vim.keymap.set("n", "<leader>o", "<cmd>Outline<CR>", { desc = "Toggle Outline" })
