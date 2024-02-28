@@ -57,3 +57,6 @@ vim.o.foldlevel = 1
 vim.o.foldlevelstart = 99
 vim.o.foldenable = true
 vim.o.foldclose = "all"
+
+-- toggleterm
+vim.o.shell="/bin/bash"
