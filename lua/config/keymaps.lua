@@ -35,7 +35,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 
 -- Telescope --
 keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", {})
-keymap('n', '<leader>fg', "<cmd>Telescope live_grep<cr>", {})
+keymap('n', '<leader>fg', "<cmd>Telescope live_grep_args<cr>", {})
 keymap('n', '<leader>fb', "<cmd>Telescope buffers<cr>", {})
 keymap('n', '<leader>fh', "<cmd>Telescope help_tags<cr>", {})
 
