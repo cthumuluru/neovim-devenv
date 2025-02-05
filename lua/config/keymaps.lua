@@ -28,16 +28,16 @@ keymap("n", "<C-l>", "<C-w>l", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Resize with arrows
-keymap("n", "<C-Up>", ":resize +2<CR>", opts)
-keymap("n", "<C-Down>", ":resize -2<CR>", opts)
-keymap("n", "<C-Left>", ":vertical resize -2<CR>", opts)
-keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
+keymap("n", "<S-Up>", ":resize +5<CR>", opts)
+keymap("n", "<S-Down>", ":resize -5<CR>", opts)
+keymap("n", "<S-Left>", ":vertical resize -5<CR>", opts)
+keymap("n", "<S-Right>", ":vertical resize +5<CR>", opts)
 
 -- Telescope --
-keymap('n', '<leader>ff', "<cmd>Telescope find_files<cr>", {})
-keymap('n', '<leader>fg', "<cmd>Telescope live_grep_args<cr>", {})
-keymap('n', '<leader>fb', "<cmd>Telescope buffers<cr>", {})
-keymap('n', '<leader>fh', "<cmd>Telescope help_tags<cr>", {})
+keymap('n', '<leader>ff', "<cmd>Telescope find_files<CR>", {})
+keymap('n', '<leader>fg', "<cmd>Telescope live_grep_args<CR>", {})
+keymap('n', '<leader>fb', "<cmd>Telescope buffers<CR>", {})
+keymap('n', '<leader>fh', "<cmd>Telescope help_tags<CR>", {})
 
 -- Terminal --
 -- Better terminal navigation
