@@ -27,7 +27,7 @@ local function setup()
       ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
       ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
       ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
-      ["<C-y>"] = cmp.config.disable,
+      ["<C-y>"] = cmp.mapping.confirm { select = true },
       ["<C-e>"] = cmp.mapping {
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
@@ -85,6 +85,7 @@ local function setup()
       { name = "luasnip" },
       { name = "buffer" },
       { name = "path" },
+      { name = "nvim_lsp_signature_help" },
     },
     confirm_opts = {
       behavior = cmp.ConfirmBehavior.Replace,
@@ -107,6 +108,7 @@ return {
     "hrsh7th/cmp-buffer", -- buffer completions
     "hrsh7th/cmp-path", -- path completions
     "hrsh7th/cmp-cmdline", -- cmdline completions
+    "hrsh7th/cmp-nvim-lsp-signature-help", -- signature help
     "saadparwaiz1/cmp_luasnip", -- snippet completions
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/cmp-nvim-lua",
